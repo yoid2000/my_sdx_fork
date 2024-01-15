@@ -7,7 +7,6 @@ from .common import *
 from .interval import Interval, Intervals
 from .tree import Branch, Leaf, Node
 
-
 @dataclass
 class Bucket:
     intervals: Intervals
@@ -18,6 +17,37 @@ Buckets = list[Bucket]
 
 BucketsCache = dict[Node, Buckets]
 
+# PF: START
+def _dump_tree(node, dump_type):
+    import json
+    import random
+    import string
+    if 'global_counter' not in globals():
+        global global_counter
+        global_counter = 0
+    else:
+        global_counter += 1
+    dump = node.dump_tree()
+    fileName = f"dump{dump_type}.{global_counter}.json"
+    print(fileName, id(node))
+    with open(fileName, 'w') as f:
+        json.dump(dump, f, indent=2)
+
+def _check_for_range_buckets(node, buckets, column_index, dump_type):
+    if column_index in node.context.combination:
+        i = node.context.combination.index(column_index)
+        for bucket in buckets:
+            if bucket.intervals[i].min != bucket.intervals[i].max:
+                print(id(node), bucket)
+                _dump_tree(node, dump_type)
+
+def _check_for_range_intervals(node, intervals, column_index, dump_type):
+    if column_index in node.context.combination:
+        i = node.context.combination.index(column_index)
+        for interval in intervals:
+            if interval[i].min != interval[i].max:
+                _dump_tree(node, dump_type)
+# PF: END
 
 def _adjust_counts(buckets: Buckets, current_count: int, target_count: int) -> None:
     ratio = target_count / current_count
@@ -47,6 +77,9 @@ def _get_subbuckets(node: Node, harvested_nodes: BucketsCache, unsafe_rng: Rando
             subnode_buckets = []
         else:
             subnode_buckets = _harvest_node(subnode, harvested_nodes, unsafe_rng)
+            if False: # PF: START      doesn't happen here
+                _check_for_range_buckets(subnode, subnode_buckets, 0, 9)
+            # PF: END
 
         subnodes_buckets.append(subnode_buckets)
 
@@ -183,7 +216,11 @@ def _refine_buckets(node: Node, harvested_nodes: BucketsCache, count: int, unsaf
     subbuckets = _get_subbuckets(node, harvested_nodes, unsafe_rng)
 
     if not all(subbuckets):
-        return [Bucket(tuple(node.bucket_intervals()), count)]
+        returnBuckets = [Bucket(tuple(node.bucket_intervals()), count)]
+        if False: # PF: START      
+            _check_for_range_buckets(node, returnBuckets, 0, 4)
+        # PF: END
+        return returnBuckets
 
     smallest_intervals = _get_smallest_intervals(subbuckets)
     _compact_smallest_intervals(node, smallest_intervals)
@@ -192,11 +229,18 @@ def _refine_buckets(node: Node, harvested_nodes: BucketsCache, count: int, unsaf
 
     if not all(per_dimension_interval_lists) or not all(per_subnode_intervals_lists):
         # Can't match if there are no intervals for some subnodes or no interval for some dimensions.
-        return [Bucket(tuple(node.bucket_intervals()), count)]
+        returnBuckets = [Bucket(tuple(node.bucket_intervals()), count)]
+        if False: # PF: START      
+            _check_for_range_buckets(node, returnBuckets, 0, 5)
+        # PF: END
+        return returnBuckets
 
     matched_intervals = _match_subintervals(
         count, per_dimension_interval_lists, per_subnode_intervals_lists, unsafe_rng
     )
+    if False: # PF: START      no hits here!
+        _check_for_range_intervals(node, matched_intervals, 0, 8)
+    # PF: END
     return [Bucket(interval, 1) for interval in matched_intervals]
 
 
@@ -206,17 +250,35 @@ def _harvest_leaf(leaf: Leaf, harvested_nodes: BucketsCache, unsafe_rng: Random)
         if leaf.is_singularity() or leaf.dimensions() == 1:
             return [Bucket(tuple(leaf.bucket_intervals()), leaf.noisy_count())]
         else:
-            return _refine_buckets(leaf, harvested_nodes, leaf.noisy_count(), unsafe_rng)
+            refined_buckets = _refine_buckets(leaf, harvested_nodes, leaf.noisy_count(), unsafe_rng)
+            if False: # PF: START        no hits here!
+                _check_for_range_buckets(leaf, refined_buckets, 0, 3)
+            # PF: END
+            return refined_buckets
     else:
         return []
 
 
 def _harvest_branch(branch: Branch, harvested_nodes: BucketsCache, unsafe_rng: Random) -> Buckets:
+    # PF: START
+    if (len(branch.actual_intervals) == 3 and
+        branch.actual_intervals[0].min == 4.0 and branch.actual_intervals[0].max == 5.0 and
+        branch.actual_intervals[1].min == 5.0 and branch.actual_intervals[1].max == 5.0 and
+        branch.actual_intervals[2].min == 444.0 and branch.actual_intervals[2].max == 490.0):
+        pass
+    if (len(branch.actual_intervals) == 2 and
+        branch.actual_intervals[0].min == 4.0 and branch.actual_intervals[0].max == 5.0 and
+        branch.actual_intervals[1].min == 413.0 and branch.actual_intervals[1].max == 490.0):
+        pass
+    # PF: END
     children_buckets = list(
         chain.from_iterable(
             _harvest_node(child_node, harvested_nodes, unsafe_rng) for child_node in branch.children.values()
         )
     )
+    if False: # PF: START
+        _check_for_range_buckets(branch, children_buckets, 0, 2)
+    # PF: END
 
     children_count = sum(bucket.count for bucket in children_buckets)
     parent_count = branch.noisy_count()
@@ -228,15 +290,15 @@ def _harvest_branch(branch: Branch, harvested_nodes: BucketsCache, unsafe_rng: R
             children_buckets += _refine_buckets(branch, harvested_nodes, parent_count - children_count, unsafe_rng)
     else:
         _adjust_counts(children_buckets, children_count, parent_count)
-
     return children_buckets
-
 
 def _harvest_node(node: Node, harvested_nodes: BucketsCache, unsafe_rng: Random) -> Buckets:
     if harvested_nodes.get(node) is None:
         harvester = _harvest_leaf if isinstance(node, Leaf) else _harvest_branch
         harvested_nodes[node] = harvester(node, harvested_nodes, unsafe_rng)  # type: ignore
-
+    if False: # PF: START
+        _check_for_range_buckets(node, harvested_nodes[node], 0, 6)
+    # PF: END
     return harvested_nodes[node]
 
 
@@ -246,4 +308,7 @@ def harvest(node: Node, unsafe_rng: Random) -> Buckets:
     # Maps node.NodeData.Id to its already harvested buckets, so it's done only once.
     harvested_nodes: BucketsCache = dict()
     buckets = _harvest_node(node, harvested_nodes, unsafe_rng)
+    if False: # PF: START
+        _check_for_range_buckets(node, buckets, 0, 1)
+    # PF: END
     return [bucket for bucket in buckets if bucket.count > 0]

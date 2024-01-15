@@ -1,6 +1,6 @@
 from pytest import approx
 
-from syndiffix.anonymizer import *
+from my_sdx_fork.anonymizer import *
 
 from .conftest import *
 

@@ -1,0 +1,1154 @@
+[
+  {
+    "node_id": 2051192920224,
+    "noisy_count": 12,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        404.0,
+        479.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        2.0,
+        3.0
+      ],
+      [
+        384.0,
+        512.0
+      ]
+    ],
+    "subnodes": [
+      2051161093936,
+      2051162197584,
+      2051183265392
+    ],
+    "children": [
+      2051193094928,
+      2051193095648,
+      2051193096368
+    ]
+  },
+  {
+    "node_id": 2051193094928,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        404.0,
+        415.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.5
+      ],
+      [
+        384.0,
+        448.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051193095648,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        426.0,
+        426.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        4.0
+      ],
+      [
+        2.0,
+        2.5
+      ],
+      [
+        384.0,
+        448.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051193096368,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        479.0,
+        479.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.5
+      ],
+      [
+        448.0,
+        512.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051161093936,
+    "noisy_count": 653,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      1
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        2.0,
+        3.0
+      ]
+    ],
+    "children": [
+      2051161199984,
+      2051161200224
+    ]
+  },
+  {
+    "node_id": 2051161199984,
+    "noisy_count": 415,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      1
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.5
+      ]
+    ]
+  },
+  {
+    "node_id": 2051161200224,
+    "noisy_count": 236,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      1
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        2.0,
+        2.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        4.0
+      ],
+      [
+        2.0,
+        2.5
+      ]
+    ]
+  },
+  {
+    "node_id": 2051162197584,
+    "noisy_count": 46,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        387.0,
+        508.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        384.0,
+        512.0
+      ]
+    ],
+    "children": [
+      2051163058720,
+      2051163229488,
+      2051163991984,
+      2051162802592
+    ]
+  },
+  {
+    "node_id": 2051163058720,
+    "noisy_count": 18,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        406.0,
+        427.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        4.0
+      ],
+      [
+        384.0,
+        448.0
+      ]
+    ],
+    "children": [
+      2051164582336,
+      2051163061360
+    ]
+  },
+  {
+    "node_id": 2051164582336,
+    "noisy_count": 9,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        426.0,
+        427.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.5
+      ],
+      [
+        416.0,
+        448.0
+      ]
+    ],
+    "children": [
+      2051165081984
+    ]
+  },
+  {
+    "node_id": 2051165081984,
+    "noisy_count": 8,
+    "stub": true,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        426.0,
+        427.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.25
+      ],
+      [
+        416.0,
+        432.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051163061360,
+    "noisy_count": 10,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        406.0,
+        410.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.5
+      ],
+      [
+        384.0,
+        416.0
+      ]
+    ],
+    "children": [
+      2051164873264
+    ]
+  },
+  {
+    "node_id": 2051164873264,
+    "noisy_count": 7,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        406.0,
+        410.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.25
+      ],
+      [
+        400.0,
+        416.0
+      ]
+    ],
+    "children": [
+      2051164874224,
+      2051164874464
+    ]
+  },
+  {
+    "node_id": 2051164874224,
+    "noisy_count": 3,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        410.0,
+        410.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.125
+      ],
+      [
+        408.0,
+        416.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051164874464,
+    "noisy_count": 3,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        406.0,
+        406.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.125
+      ],
+      [
+        400.0,
+        408.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051163229488,
+    "noisy_count": 18,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        387.0,
+        432.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        384.0,
+        448.0
+      ]
+    ],
+    "children": [
+      2051163520160,
+      2051163825792
+    ]
+  },
+  {
+    "node_id": 2051163520160,
+    "noisy_count": 16,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        387.0,
+        415.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        384.0,
+        416.0
+      ]
+    ],
+    "children": [
+      2051163891232,
+      2051163543568
+    ]
+  },
+  {
+    "node_id": 2051163891232,
+    "noisy_count": 14,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        400.0,
+        415.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.25
+      ],
+      [
+        400.0,
+        416.0
+      ]
+    ],
+    "children": [
+      2051164033024,
+      2051164033552
+    ]
+  },
+  {
+    "node_id": 2051164033024,
+    "noisy_count": 6,
+    "stub": true,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        400.0,
+        406.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.125
+      ],
+      [
+        400.0,
+        408.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051164033552,
+    "noisy_count": 3,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        415.0,
+        415.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.125
+      ],
+      [
+        408.0,
+        416.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051163543568,
+    "noisy_count": 5,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        387.0,
+        397.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.25
+      ],
+      [
+        384.0,
+        400.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051163825792,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        432.0,
+        432.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        416.0,
+        448.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051163991984,
+    "noisy_count": 6,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        479.0,
+        508.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        448.0,
+        512.0
+      ]
+    ],
+    "children": [
+      2051164951584,
+      2051164951824
+    ]
+  },
+  {
+    "node_id": 2051164951584,
+    "noisy_count": 3,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        497.0,
+        508.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        480.0,
+        512.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051164951824,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        479.0,
+        479.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        448.0,
+        480.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051162802592,
+    "noisy_count": 11,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        451.0,
+        493.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        4.0
+      ],
+      [
+        448.0,
+        512.0
+      ]
+    ],
+    "children": [
+      2051163331584,
+      2051162755312
+    ]
+  },
+  {
+    "node_id": 2051163331584,
+    "noisy_count": 6,
+    "stub": true,
+    "passes_lcf": true,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        492.0,
+        493.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.5
+      ],
+      [
+        480.0,
+        512.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051162755312,
+    "noisy_count": 6,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      0,
+      2
+    ],
+    "actual_intervals": [
+      [
+        3.0,
+        3.0
+      ],
+      [
+        451.0,
+        451.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        3.0,
+        3.5
+      ],
+      [
+        448.0,
+        480.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051183265392,
+    "noisy_count": 20,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        402.0,
+        479.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        384.0,
+        512.0
+      ]
+    ],
+    "children": [
+      2051184752960,
+      2051182698864
+    ]
+  },
+  {
+    "node_id": 2051184752960,
+    "noisy_count": 16,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        402.0,
+        443.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        384.0,
+        448.0
+      ]
+    ],
+    "children": [
+      2051184830560,
+      2051182591520
+    ]
+  },
+  {
+    "node_id": 2051184830560,
+    "noisy_count": 6,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        402.0,
+        415.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.25
+      ],
+      [
+        384.0,
+        416.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051182591520,
+    "noisy_count": 11,
+    "stub": false,
+    "passes_lcf": true,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        426.0,
+        443.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.25
+      ],
+      [
+        416.0,
+        448.0
+      ]
+    ],
+    "children": [
+      2051165641776,
+      2051165642304
+    ]
+  },
+  {
+    "node_id": 2051165641776,
+    "noisy_count": 3,
+    "stub": true,
+    "passes_lcf": false,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        426.0,
+        426.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.125
+      ],
+      [
+        416.0,
+        432.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051165642304,
+    "noisy_count": 9,
+    "stub": true,
+    "passes_lcf": true,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        443.0,
+        443.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.125
+      ],
+      [
+        432.0,
+        448.0
+      ]
+    ]
+  },
+  {
+    "node_id": 2051182698864,
+    "noisy_count": 3,
+    "stub": false,
+    "passes_lcf": false,
+    "combination": [
+      1,
+      2
+    ],
+    "actual_intervals": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        472.0,
+        479.0
+      ]
+    ],
+    "snapped_intervals": [
+      [
+        2.0,
+        2.5
+      ],
+      [
+        448.0,
+        512.0
+      ]
+    ]
+  }
+]

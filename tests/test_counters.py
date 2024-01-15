@@ -1,6 +1,6 @@
 import numpy as np
 
-from syndiffix.counters import *
+from my_sdx_fork.counters import *
 
 from .conftest import *
 

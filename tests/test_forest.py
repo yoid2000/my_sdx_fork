@@ -2,9 +2,9 @@ from typing import Any, Optional
 
 import pytest
 
-from syndiffix.common import *
+from my_sdx_fork.common import *
 
-from .conftest import *
+from conftest import *
 
 
 def test_column_type_check() -> None:

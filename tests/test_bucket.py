@@ -1,5 +1,5 @@
-from syndiffix.bucket import *
-from syndiffix.common import *
+from my_sdx_fork.bucket import *
+from my_sdx_fork.common import *
 
 from .conftest import *
 

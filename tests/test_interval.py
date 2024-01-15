@@ -1,6 +1,6 @@
 import pytest
 
-from syndiffix.interval import *
+from my_sdx_fork.interval import *
 
 
 @pytest.mark.parametrize(

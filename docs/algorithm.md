@@ -89,7 +89,7 @@ and its snapped ranges elsewhere.
   - Else:
     - Return an empty list.
 - If insufficient buckets for a subnode:
-  - Return the input bucket.
+  - Return the input bucket.     # This is leading to ranges reported
 - Compute the possible cumulative ranges for each subnode and dimension.
 - Compute the smallest ranges for all dimensions.
 - Compact smallest ranges by excluding any low-count half-ranges.

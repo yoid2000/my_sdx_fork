@@ -4,9 +4,9 @@ from random import Random
 import pandas as pd
 import pytest
 
-from syndiffix.bucket import Bucket
-from syndiffix.interval import Interval
-from syndiffix.microdata import *
+from my_sdx_fork.bucket import Bucket
+from my_sdx_fork.interval import Interval
+from my_sdx_fork.microdata import *
 
 _rng = Random(0)
 

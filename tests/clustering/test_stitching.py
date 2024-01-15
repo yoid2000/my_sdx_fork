@@ -1,8 +1,8 @@
 import numpy as np
 
-from syndiffix.clustering.common import Clusters, MicrodataRow, StitchOwner
-from syndiffix.clustering.stitching import StitchingMetadata, build_table
-from syndiffix.common import ColumnId
+from my_sdx_fork.clustering.common import Clusters, MicrodataRow, StitchOwner
+from my_sdx_fork.clustering.stitching import StitchingMetadata, build_table
+from my_sdx_fork.common import ColumnId
 
 from ..conftest import *
 

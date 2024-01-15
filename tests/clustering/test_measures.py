@@ -1,6 +1,6 @@
 import numpy as np
 
-from syndiffix.clustering.measures import measure_all
+from my_sdx_fork.clustering.measures import measure_all
 
 from ..conftest import *
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, replace
-from typing import Iterator, NewType, Union
+from typing import Iterator, NewType, Union, List, Dict, Optional
 
 import numpy as np
 import numpy.typing as npt
@@ -83,6 +83,37 @@ class Node(ABC):
             is_stub_subnode = not self.is_over_threshold(stub_low_threshold)
             self._stub_subnode_cache = is_stub_subnode  # Cache result for future tests.
             return is_stub_subnode
+
+    # PF: START ADD
+    def _dump_tree(self, dump: List[Dict], get_subnodes: bool = False):
+        low_threshold = self.context.anonymization_context.anonymization_params.low_count_params.low_threshold
+        node_info = {
+            'node_id': id(self),
+            'noisy_count': self.noisy_count(),
+            'stub': self.is_stub,
+            'passes_lcf': self.is_over_threshold(low_threshold),
+            'combination': self.context.combination,
+            'actual_intervals': [[x.min, x.max] for x in self.actual_intervals],
+            'snapped_intervals': [[x.min, x.max] for x in self.snapped_intervals],
+        }
+        dump.append(node_info)
+        if get_subnodes and len(self.subnodes) > 0:
+            node_info['subnodes'] = tuple(id(subnode) for subnode in self.subnodes)
+
+        if isinstance(self, Branch):
+            node_info['children'] = tuple(id(child) for child in self.children.values())
+            for child_node in self.children.values():
+                child_node._dump_tree(dump)
+
+    def dump_tree(self) -> List[Dict]:
+        # Dumps the trees from this node and each of its subnodes
+        # Use for debugging and testing
+        dump = []
+        self._dump_tree(dump, get_subnodes = True)
+        for subnode in self.subnodes:
+            if subnode is not None: subnode._dump_tree(dump)
+        return dump
+    # PF: END ADD
 
     # Helper method for `push_down_1dim_root`.
     # Outliers need special handling. They must:

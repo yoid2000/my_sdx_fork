@@ -2,10 +2,10 @@ import json
 import os
 from typing import Any
 
-from syndiffix.common import *
-from syndiffix.counters import UniquePidCountersFactory
-from syndiffix.forest import *
-from syndiffix.microdata import apply_convertors, get_convertor
+from my_sdx_fork.common import *
+from my_sdx_fork.counters import UniquePidCountersFactory
+from my_sdx_fork.forest import *
+from my_sdx_fork.microdata import apply_convertors, get_convertor
 
 SALT = bytes([])
 NOISELESS_SUPPRESSION = SuppressionParams(layer_sd=0.0)

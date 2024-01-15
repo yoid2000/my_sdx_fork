@@ -5,7 +5,7 @@ import time
 import pandas as pd
 import psutil
 
-from syndiffix import Synthesizer
+from my_sdx_fork import Synthesizer
 
 
 # Utility function for loading a CSV file.

@@ -1,7 +1,7 @@
 import pandas as pd
 from pytest import approx
 
-from syndiffix import Synthesizer
+from my_sdx_fork import Synthesizer
 
 from .conftest import *
 

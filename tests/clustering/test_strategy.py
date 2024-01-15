@@ -1,6 +1,6 @@
-from syndiffix.clustering.common import StitchOwner
-from syndiffix.clustering.strategy import NoClustering, SingleClustering
-from syndiffix.common import *
+from my_sdx_fork.clustering.common import StitchOwner
+from my_sdx_fork.clustering.strategy import NoClustering, SingleClustering
+from my_sdx_fork.common import *
 
 from ..conftest import *
 

@@ -1,7 +1,7 @@
 import numpy as np
 
-import syndiffix.clustering.solver as solver
-from syndiffix.clustering.common import Clusters, ColumnId, StitchOwner
+import my_sdx_fork.clustering.solver as solver
+from my_sdx_fork.clustering.common import Clusters, ColumnId, StitchOwner
 
 Col = ColumnId
 
