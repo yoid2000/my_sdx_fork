@@ -3,7 +3,7 @@ from bisect import bisect_left
 from itertools import islice
 from os.path import commonprefix
 from random import Random
-from typing import Generator, Iterable, Literal, Set, cast
+from typing import Generator, Iterable, Literal, Set, cast, Optional  #128
 
 import numpy as np
 import pandas as pd
@@ -18,6 +18,8 @@ from pandas.api.types import (
 from .bucket import Buckets
 from .common import ColumnType, Value
 from .interval import Interval, Intervals
+from .marginals import Marginal     #128
+from .forest import Forest
 
 MICRODATA_SYN_VALUE: Literal[0] = 0
 MICRODATA_FLOAT_VALUE: Literal[1] = 1
@@ -39,7 +41,7 @@ class DataConvertor(ABC):
         pass
 
     @abstractmethod
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:    #128
         pass
 
 
@@ -51,7 +53,7 @@ class BooleanConvertor(DataConvertor):
         assert isinstance(value, bool) or isinstance(value, np.bool_)
         return 1.0 if value else 0.0
 
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:
         value = _generate_float(interval, rng) >= 0.5
         return (value, 1.0 if value else 0.0)
 
@@ -64,7 +66,7 @@ class RealConvertor(DataConvertor):
         assert isinstance(value, float) or isinstance(value, np.floating)
         return float(value)
 
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:
         value = _generate_float(interval, rng)
         return (value, value)
 
@@ -77,7 +79,7 @@ class IntegerConvertor(DataConvertor):
         assert isinstance(value, int) or isinstance(value, np.integer)
         return float(value)
 
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:
         value = int(_generate_float(interval, rng))
         return (value, float(value))
 
@@ -91,7 +93,7 @@ class TimestampConvertor(DataConvertor):
         # converting date time into second timestamp, counting from reference.
         return float((value - TIMESTAMP_REFERENCE) / pd.Timedelta(1, "s"))
 
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:
         value = _generate_float(interval, rng)
         datetime = TIMESTAMP_REFERENCE + np.timedelta64(int(value), "s")
         return (datetime, value)
@@ -113,18 +115,19 @@ class StringConvertor(DataConvertor):
         assert index >= 0 and index < len(self.value_map)
         return float(index)
 
-    def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def from_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:     #128
         if interval.is_singularity():
             return (self.value_map[int(interval.min)], interval.min)
         else:
-            return self._map_interval(interval, rng)
+            return self._map_interval(interval, rng, marginal)    #128
 
-    def _map_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+    def _map_interval(self, interval: Interval, rng: Random, marginal: Marginal) -> MicrodataValue:    #128
         # Finds a common prefix of the strings encoded as interval boundaries and appends "*"
         # and a random number to ensure that the count of distinct values approximates that in the original data.
         min_value = self.value_map[int(interval.min)]
         max_value = self.value_map[min(int(interval.max), len(self.value_map) - 1)]
         value = int(_generate_float(interval, rng))
+        zzzz
 
         return (commonprefix([min_value, max_value]) + "*" + str(value), float(value))
 
@@ -133,17 +136,17 @@ def _generate_float(interval: Interval, rng: Random) -> float:
     return rng.uniform(interval.min, interval.max)
 
 
-def _generate(interval: Interval, convertor: DataConvertor, null_mapping: float, rng: Random) -> MicrodataValue:
-    return convertor.from_interval(interval, rng) if interval.min != null_mapping else (None, null_mapping)
+def _generate(interval: Interval, convertor: DataConvertor, null_mapping: float, rng: Random, marginal: Marginal) -> MicrodataValue:
+    return convertor.from_interval(interval, rng, marginal) if interval.min != null_mapping else (None, null_mapping)
 
 
 def _microdata_row_generator(
-    intervals: Intervals, convertors: list[DataConvertor], null_mappings: list[float], rng: Random
+    intervals: Intervals, convertors: list[DataConvertor], null_mappings: list[float], rng: Random, marginal: Marginal
 ) -> Generator[MicrodataRow, None, None]:
     assert len(intervals) == len(convertors)
     assert len(intervals) == len(null_mappings)
     while True:
-        yield [_generate(i, c, nm, rng) for i, c, nm in zip(intervals, convertors, null_mappings)]
+        yield [_generate(i, c, nm, rng, marginal) for i, c, nm in zip(intervals, convertors, null_mappings)]
 
 
 def get_null_mapping(interval: Interval) -> float:
@@ -189,12 +192,12 @@ def apply_convertors(convertors: list[DataConvertor], raw_data: pd.DataFrame) ->
 
 
 def generate_microdata(
-    buckets: Buckets, convertors: list[DataConvertor], null_mappings: list[float], rng: Random
+    buckets: Buckets, convertors: list[DataConvertor], null_mappings: list[float], rng: Random, marginal: Marginal
 ) -> list[MicrodataRow]:
     microdata_rows: list[MicrodataRow] = []
     for bucket in buckets:
         microdata_rows.extend(
-            islice(_microdata_row_generator(bucket.intervals, convertors, null_mappings, rng), bucket.count)
+            islice(_microdata_row_generator(bucket.intervals, convertors, null_mappings, rng, marginal), bucket.count)
         )
 
     return microdata_rows
