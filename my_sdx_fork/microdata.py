@@ -18,6 +18,7 @@ from pandas.api.types import (
 from .bucket import Buckets
 from .common import ColumnType, Value
 from .interval import Interval, Intervals
+from .tree import Node, Branch, Leaf
 
 MICRODATA_SYN_VALUE: Literal[0] = 0
 MICRODATA_FLOAT_VALUE: Literal[1] = 1
@@ -40,6 +41,9 @@ class DataConvertor(ABC):
 
     @abstractmethod
     def from_interval(self, interval: Interval, rng: Random) -> MicrodataValue:
+        pass
+
+    def map_tree(self, root: Node) -> None:    #128
         pass
 
 
@@ -104,6 +108,7 @@ class StringConvertor(DataConvertor):
             if not isinstance(value, str):
                 raise TypeError(f"Not a `str` object in a string dtype column: {value}.")
         self.value_map = sorted(cast(Set[str], unique_values))
+        self.safe_values = set()     #128
 
     def column_type(self) -> ColumnType:
         return ColumnType.STRING
@@ -125,8 +130,22 @@ class StringConvertor(DataConvertor):
         min_value = self.value_map[int(interval.min)]
         max_value = self.value_map[min(int(interval.max), len(self.value_map) - 1)]
         value = int(_generate_float(interval, rng))
+        if value in self.safe_values:    #128
+            print(f"Found safe value {self.value_map[value]} from {float(value)}")
+            return (self.value_map[value], float(value))
+        else:
+            return (commonprefix([min_value, max_value]) + "*" + str(value), float(value))
 
-        return (commonprefix([min_value, max_value]) + "*" + str(value), float(value))
+    def map_tree(self, root: Node) -> None:    #128
+        def _map_tree_walk(node: Node) -> None:
+            if isinstance(node, Leaf):
+                low_threshold = node.context.anonymization_context.anonymization_params.low_count_params.low_threshold
+                if node.is_singularity() and node.is_over_threshold(low_threshold):
+                    self.safe_values.add(int(node.actual_intervals[0].min))
+            elif isinstance(node, Branch):
+                for child_node in node.children.values():
+                    _map_tree_walk(child_node)
+        _map_tree_walk(root)
 
 
 def _generate_float(interval: Interval, rng: Random) -> float:
@@ -144,15 +163,6 @@ def _microdata_row_generator(
     assert len(intervals) == len(null_mappings)
     while True:
         yield [_generate(i, c, nm, rng) for i, c, nm in zip(intervals, convertors, null_mappings)]
-
-
-def get_null_mapping(interval: Interval) -> float:
-    if interval.max > 0:
-        return 2 * interval.max
-    elif interval.min < 0:
-        return 2 * interval.min
-    else:
-        return 1.0
 
 
 def get_convertor(df: pd.DataFrame, column: str) -> DataConvertor:

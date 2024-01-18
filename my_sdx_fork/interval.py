@@ -80,3 +80,13 @@ def snap_interval(interval: Interval) -> Interval:
         return snap_interval(Interval(aligned_min, interval.max))
     else:
         return Interval(aligned_min, aligned_min + snapped_size)
+
+#128 taken from microdata.py
+def get_null_mapping(interval: Interval) -> float:
+    if interval.max > 0:
+        return 2 * interval.max
+    elif interval.min < 0:
+        return 2 * interval.min
+    else:
+        return 1.0
+
